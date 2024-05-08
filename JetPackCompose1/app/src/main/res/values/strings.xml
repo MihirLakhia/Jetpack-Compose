@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">JetPack Compose 1</string>
+    <string name="title_activity_snack_bar">SnackBarActivity</string>
+    <string name="title_activity_constraint_layout">ConstraintLayoutActivity</string>
+    <string name="title_activity_animation">AnimationActivity</string>
+    <string name="title_activity_circular_progress_bar">CircularProgressBarActivity</string>
+    <string name="title_activity_music_knob">MusicKnobActivity</string>
+</resources>
