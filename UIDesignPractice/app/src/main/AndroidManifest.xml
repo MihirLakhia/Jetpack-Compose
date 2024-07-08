@@ -13,6 +13,28 @@
         android:theme="@style/Theme.UIDesignPractice"
         tools:targetApi="31">
         <activity
+            android:name=".dropdown.AnimatedDropDown"
+            android:exported="true"
+            android:label="@string/title_activity_dropdown"
+            android:theme="@style/Theme.UIDesignPractice">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".timer_practice.TimerActivity"
+            android:exported="true"
+            android:label="@string/title_activity_timer"
+            android:theme="@style/Theme.UIDesignPractice">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
