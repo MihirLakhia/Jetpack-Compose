@@ -34,7 +34,7 @@ fun AppBar() {
                 text = "Achievement",
                 modifier = Modifier.fillMaxWidth(),
                 maxLines = 1,
-                fontSize = 14.sp,
+                fontSize = 16.sp,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center
 
