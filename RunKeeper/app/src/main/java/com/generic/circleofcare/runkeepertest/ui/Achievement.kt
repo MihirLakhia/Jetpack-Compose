@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.generic.circleofcare.runkeepertest.R
@@ -223,9 +224,10 @@ fun RecordItem(
             color = TxtColor,
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
-                .padding(5.dp)
+                .padding(10.dp, 5.dp)
                 .clickable {
                     // Handle the click
                 }
