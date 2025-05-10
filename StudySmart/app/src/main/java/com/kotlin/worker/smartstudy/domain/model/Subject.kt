@@ -13,7 +13,7 @@ import com.kotlin.worker.smartstudy.presentation.theme.gradient5
 data class Subject(
     val name: String,
     val goalHours: Float,
-    val colours: List<Color>,
+    val colours: List<Int>,
     @PrimaryKey(autoGenerate = true)
     val subjectId:Int? = null
 ) {

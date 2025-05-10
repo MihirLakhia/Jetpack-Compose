@@ -43,6 +43,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.kotlin.worker.smartstudy.Priority
 import com.kotlin.worker.smartstudy.changeMillisToString
 import com.kotlin.worker.smartstudy.presentation.component.DeleteDialog
@@ -52,6 +53,7 @@ import com.kotlin.worker.smartstudy.presentation.component.TaskDatePicker
 import com.kotlin.worker.smartstudy.subjects
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.Instant
 
@@ -64,6 +66,9 @@ data class TaskScreenNavArgs(
 @Destination(navArgsDelegate = TaskScreenNavArgs::class)
 @Composable
 fun TaskScreenRoute(navigator: DestinationsNavigator) {
+
+    val viewModel:TaskViewModel = hiltViewModel()
+
     TaskScreen(
         onBackButtonClick = { navigator.navigateUp() }
     )

@@ -1,6 +1,7 @@
 package com.kotlin.worker.smartstudy
 
 import android.util.Log
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.ui.graphics.Color
 import java.time.Instant
 import java.time.LocalDate
@@ -19,7 +20,7 @@ enum class Priority(val title: String, val color: Color, val value: Int) {
 }
 
 fun Long?.changeMillisToString(): String {
-    Log.d("Time","$this")
+    Log.d("Time", "$this")
     val date: LocalDate = this?.let { it: Long ->
         Instant
             .ofEpochMilli(it)
@@ -27,4 +28,17 @@ fun Long?.changeMillisToString(): String {
             .toLocalDate()
     } ?: LocalDate.now()
     return date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"))
+}
+
+fun Long.toHour(): Float {
+    val hours = this.toFloat() / 360f
+    return "%.2f".format(hours).toFloat()
+}
+
+sealed class SnackBarEvent {
+    data class ShowSnackBar(
+        val message: String,
+        val duration: SnackbarDuration = SnackbarDuration.Short
+    ) : SnackBarEvent()
+
 }

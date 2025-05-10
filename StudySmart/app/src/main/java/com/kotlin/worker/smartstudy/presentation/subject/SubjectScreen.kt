@@ -41,6 +41,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.kotlin.worker.smartstudy.domain.model.Subject
 import com.kotlin.worker.smartstudy.presentation.component.AddSubjectDialog
 import com.kotlin.worker.smartstudy.presentation.component.CountCard
@@ -62,6 +63,8 @@ data class SubjectScreenNavArgs(
 @Destination(navArgsDelegate = SubjectScreenNavArgs::class)
 @Composable
 fun SubjectScreenRoute(navigator: DestinationsNavigator) {
+
+    val viewModel:SubjectViewModel = hiltViewModel()
 
     SubjectScreen(
         onBackClick = { navigator.navigateUp() },
