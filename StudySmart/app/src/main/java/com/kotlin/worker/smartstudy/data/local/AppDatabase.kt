@@ -7,7 +7,7 @@ import com.kotlin.worker.smartstudy.domain.model.Session
 import com.kotlin.worker.smartstudy.domain.model.Subject
 import com.kotlin.worker.smartstudy.domain.model.Task
 
-@Database(entities = [Subject::class, Session::class, Task::class], version = 1)
+@Database(entities = [Subject::class, Session::class, Task::class], version = 1,exportSchema = false)
 @TypeConverters(ColorListConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 

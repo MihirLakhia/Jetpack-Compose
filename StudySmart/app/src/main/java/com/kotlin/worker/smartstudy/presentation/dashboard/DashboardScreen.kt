@@ -57,12 +57,13 @@ import com.kotlin.worker.smartstudy.presentation.destinations.TaskScreenRouteDes
 import com.kotlin.worker.smartstudy.presentation.subject.SubjectScreenNavArgs
 import com.kotlin.worker.smartstudy.presentation.task.TaskScreenNavArgs
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collectLatest
-import kotlin.math.truncate
 
-@Destination(start = true)
+@RootNavGraph(start = true)
+@Destination()
 @Composable
 fun DashboardScreenRoute(
     navigator: DestinationsNavigator
@@ -83,11 +84,11 @@ fun DashboardScreenRoute(
                 navigator.navigate(SubjectScreenRouteDestination(navArgs = navArgs))
             }
         },
-        onTaskCardClick = { taskId ->
+        onTaskCardClick = { task ->
 
             val navArgs = TaskScreenNavArgs(
-                taskId = taskId,
-                subjectId = null
+                taskId = task.taskId,
+                subjectId = task.taskSubjectId
             )
             navigator.navigate(TaskScreenRouteDestination(navArgs = navArgs))
         },
@@ -105,7 +106,7 @@ private fun DashboardScreen(
     onEvent: (DashboardEvent) -> Unit,
     snackbarEvent: SharedFlow<SnackBarEvent>,
     onSubjectCardClick: (Int?) -> Unit,
-    onTaskCardClick: (Int?) -> Unit,
+    onTaskCardClick: (Task) -> Unit,
     onStartSessionClick: () -> Unit
 ) {
 
@@ -122,6 +123,8 @@ private fun DashboardScreen(
                         duration = event.duration
                     )
                 }
+
+                SnackBarEvent.NavigateUp -> {}
             }
         }
     }

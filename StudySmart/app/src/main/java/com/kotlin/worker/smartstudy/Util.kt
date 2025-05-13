@@ -19,7 +19,7 @@ enum class Priority(val title: String, val color: Color, val value: Int) {
     }
 }
 
-fun Long?.changeMillisToString(): String {
+fun Long?.changeMillisToDateString(): String {
     Log.d("Time", "$this")
     val date: LocalDate = this?.let { it: Long ->
         Instant
@@ -41,4 +41,5 @@ sealed class SnackBarEvent {
         val duration: SnackbarDuration = SnackbarDuration.Short
     ) : SnackBarEvent()
 
+    data object NavigateUp: SnackBarEvent()
 }

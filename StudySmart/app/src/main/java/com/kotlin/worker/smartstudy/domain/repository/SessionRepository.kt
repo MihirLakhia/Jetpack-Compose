@@ -1,7 +1,5 @@
 package com.kotlin.worker.smartstudy.domain.repository
 
-import androidx.room.Delete
-import androidx.room.Query
 import com.kotlin.worker.smartstudy.domain.model.Session
 import kotlinx.coroutines.flow.Flow
 
@@ -14,7 +12,7 @@ interface SessionRepository {
     fun getAllSession(): Flow<List<Session>>
 
     fun getRecentFiveSession(): Flow<List<Session>>
-    fun getRecentTenSession(subjectId: Int): Flow<List<Session>>
+    fun getRecentTenSessionForSubject(subjectId: Int): Flow<List<Session>>
 
     fun getTotalSessionDuration(): Flow<Long>
 

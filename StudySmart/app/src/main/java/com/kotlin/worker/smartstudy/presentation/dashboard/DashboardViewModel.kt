@@ -62,7 +62,7 @@ class DashboardViewModel @Inject constructor(
     val recentSession: StateFlow<List<Session>> = sessionRepository.getRecentFiveSession()
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
+            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000),
             initialValue = emptyList()
         )
 
@@ -90,10 +90,29 @@ class DashboardViewModel @Inject constructor(
                     it.copy(subjectCardColor = event.colors)
                 }
             }
-            is DashboardEvent.OnTaskIsCompleteChange -> TODO()
+            is DashboardEvent.OnTaskIsCompleteChange -> {updateTask(event.task)}
             DashboardEvent.SaveSubject -> saveSubject()
-            DashboardEvent.DeleteSession -> TODO()
+            DashboardEvent.DeleteSession -> {}
         }
+    }
+
+    private fun updateTask(task: Task) {
+        viewModelScope.launch {
+            try {
+                taskRepository.upsertTask(
+                    task = task.copy(isCompleted = !task.isCompleted)
+                )
+                _snackBarEventFlow.emit(
+                    SnackBarEvent.ShowSnackBar("Task saved in completed Task.")
+                )
+            }catch (e:Exception){
+                _snackBarEventFlow.emit(
+                    SnackBarEvent.ShowSnackBar("Couldn't save task. ${e.message}", SnackbarDuration.Long)
+                )
+            }
+        }
+
+
     }
 
     private fun saveSubject() {

@@ -24,13 +24,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.kotlin.worker.smartstudy.Priority
 import com.kotlin.worker.smartstudy.R
+import com.kotlin.worker.smartstudy.changeMillisToDateString
 import com.kotlin.worker.smartstudy.domain.model.Task
 
 fun LazyListScope.taskList(
     sectionTitle: String,
     tasks: List<Task>,
     emptyListText: String = "You don't have any task.",
-    onClick: (Int?) -> Unit,
+    onClick: (Task) -> Unit,
     onCheckBoxClick: (Task) -> Unit,
 ) {
     item {
@@ -53,7 +54,7 @@ fun LazyListScope.taskList(
             modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
             task = task,
             onCheckBoxClick = { onCheckBoxClick(task) },
-            onClick = { onClick(task.taskId) }
+            onClick = { onClick(task) }
         )
 
     }
@@ -92,7 +93,7 @@ fun TaskCard(
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "${task.dueDate}",
+                    text = task.dueDate.changeMillisToDateString(),
                     style = MaterialTheme.typography.bodySmall,
                     color = Color.Gray,
                     textAlign = TextAlign.Center
